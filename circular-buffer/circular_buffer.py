@@ -13,15 +13,14 @@ class CircularBuffer:
             self.buffer.append("")
         self.oldest = -1
         self.writeIndex = 0
-        self.readIndex = 0
         self.capacity = capacity
 
     def read(self):
-        if self.buffer[self.readIndex] == "":
-            raise BufferEmptyException
-        res = self.buffer[self.readIndex]
-        self.buffer[self.readIndex] = ""
-        self.readIndex = (self.readIndex + 1) % self.capacity
+        if self.buffer[self.oldest] == "":
+            raise BufferEmptyException("Buffer is empty")
+        res = self.buffer[self.oldest]
+        self.buffer[self.oldest] = ""
+        self.oldest = (self.oldest + 1) % self.capacity
         return res
 
     def write(self, data):
@@ -31,7 +30,7 @@ class CircularBuffer:
                 self.oldest = self.writeIndex
             self.writeIndex = (self.writeIndex + 1) % self.capacity
         else:
-            raise BufferFullException
+            raise BufferFullException("Buffer is full.")
 
 
     def overwrite(self, data):
@@ -44,6 +43,6 @@ class CircularBuffer:
 
     def clear(self):
         if self.buffer[self.oldest] == "":
-            raise BufferEmptyException
+            return
         self.buffer[self.oldest] = ""
         self.oldest = (self.oldest + 1) % self.capacity
