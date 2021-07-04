@@ -1,3 +1,16 @@
+"""
+Set task: Transorm an iterable (list) which may contain multiple nested lists into a simple list involving no nestings.
+Method:
+* iterlist (list) is defined as a helper and originally filled with iter(iterable).
+* In an infinite loop we check the next value in the last entry of iterlist.
+** If it is None it is ignored.
+** If it can be iterated, iter(next value) is appended to the iterlist.
+** Else it is appended to the result list res (list).
+* If the last entry of iterlist has been iterated through completely it is removed from iterlist.
+* Once iterlist is empty the result list is returned.
+Example: flatten([1,2,[3,[4,5],[6,7,[8,9]]]]) -> [1,2,3,4,5,6,7,8,9]
+"""
+
 def flatten(iterable):
     res=list()
     iterlist=list()
@@ -5,26 +18,17 @@ def flatten(iterable):
         iterlist.append(iter(iterable))
     except:
         ValueError("Input not an iterable.")
-    curr_iter=""
     while True:
         try:
             check=next(iterlist[-1])
             if check==None:
                 continue
-            #print(check)
             try:
                 iterlist.append(iter(check))
-                #print("Iterlist: ",iterlist)
-                #print("Result: ",res)
             except TypeError:
-                #print("Not an iterable")
                 res.append(check)
-                #print("Result: ",res)
         except StopIteration:
-            #print("Iteration ended.")
             iterlist.pop()
-            #print("Iterlist: ",iterlist)
-            #print("Result: ",res)
         
         if len(iterlist)==0:
             break
