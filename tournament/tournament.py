@@ -1,3 +1,28 @@
+"""
+Set Task: Given rows (list) which is a list of matchups including the winner, generate a scoreboard.
+Method:
+* Going through rows, we check if the two teams are already in teams (dict). If no, a new team is created.
+* On init, a team's name is set and all attributes (wins, ties, loss, points, matches) set to 0.
+* On __add__, matches is increased by 1 and, depending on result, all other attributes are updated.
+* Going through rows, each team of a row is added with the result.
+* After having parsed all rows, we have a dictionary of teams, which all have stored the relevant information. This then gets put into a nice output format.
+Example:
+* results = [
+            "Allegoric Alaskans;Blithering Badgers;win",
+            "Courageous Californians;Blithering Badgers;win",
+            "Allegoric Alaskans;Courageous Californians;draw",
+        ]
+* tally(results)
+    (-> teams={'Allegoric Alaskans': <__main__.Team object>, 'Blithering Badgers': <__main__.Team object>, 'Courageous Californians': <__main__.Team object>})
+    (-> teams["Allegoric Alaskans"] -> "Allegoric Alaskans             |  2 |  1 |  1 |  0 |  4")
+    -> [
+        'Team                           | MP |  W |  D |  L |  P',
+        'Allegoric Alaskans             |  2 |  1 |  1 |  0 |  4',
+        'Courageous Californians        |  2 |  1 |  1 |  0 |  4',
+        'Blithering Badgers             |  2 |  0 |  0 |  2 |  0'
+    ]
+"""
+
 class Team:
     def __init__(self,name):
         self.name=name
@@ -52,19 +77,15 @@ def tally(rows):
         except:
             teams[result[1]]=Team(result[1])
             teams[result[1]]+res
-
+    print(teams["Allegoric Alaskans"])
     teamsSorted={k: v.getPoints() for k,v in teams.items()}
     outputHelper=[x[0] for x in sorted(teamsSorted.items(),key = lambda kv: (-kv[1],kv[0]))]
     [output.append(str(teams[x])) for x in outputHelper]
     return output
 
 results = [
-            "Courageous Californians;Devastating Donkeys;win",
             "Allegoric Alaskans;Blithering Badgers;win",
-            "Devastating Donkeys;Allegoric Alaskans;loss",
             "Courageous Californians;Blithering Badgers;win",
-            "Blithering Badgers;Devastating Donkeys;draw",
             "Allegoric Alaskans;Courageous Californians;draw",
         ]
-
 print(tally(results))

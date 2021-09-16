@@ -1,3 +1,13 @@
+"""
+Set Task: Given number (int), return the roman numeral version of that number.
+Method:
+* We have two lists, ones (list) containing the roman numerals depicting powers of 10, fives (list) containing the remaining roman numerals.
+* number is converted to a string and reversed, so that we start with the last digit.
+* Going through each digit of number, four cases are checked to find the correct combination of letters from ones and fives.
+* The resulting string is once again reversed to get the result.
+Example: roman(134) (-> num="431" -> i=4, reversedRes="VI" -> i=3, reversedRes="VIXXX" -> i=1, reversedRes = "VIXXXC") -> CXXXIV
+"""
+
 def roman(number):
     ones=["I","X","C","M"]
     fives=["V","L","D"]

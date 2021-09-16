@@ -1,3 +1,39 @@
+"""
+Set Task: Implement a RESTful API for tracking IOUs.
+Method:
+* On init: If a database already exists it is saved as self.users (dict). Otherwise, an empty database is saved instead.
+* On get:
+** If a payload (json) is specified, return the specified user's balance.
+** If a payload is not specified, return all users' balance.
+* On post:
+** if url (String) is "/add", a new user is registered in the database.
+** if url (String) is "/iou", the balance of both involved users' is updated accordingly.
+Examples, using the following database:
+database = {
+            "users": [
+                {"name": "Adam", "owes": {}, "owed_by": {}, "balance": 0.0},
+                {"name": "Bob", "owes": {}, "owed_by": {}, "balance": 0.0}
+            ]
+        }
+* get({"users": "Bob"}) -> {"users": [{"name": "Bob", "owes": {}, "owed_by": {}, "balance": 0.0}]}
+* post("/iou",{"lender": "Adam", "borrower": "Bob", "amount": 3.0}) -> 
+        {
+            "users": [
+                {"name": "Adam", "owes": {}, "owed_by": {"Bob": 3.0}, "balance": 3.0},
+                {"name": "Bob", "owes": {"Adam": 3.0}, "owed_by": {}, "balance": -3.0}
+            ]
+        }
+* post("/add",{"user": "Cesar"}) -> 
+        {
+            "users": [
+                {"name": "Adam", "owes": {}, "owed_by": {"Bob": 3.0}, "balance": 3.0},
+                {"name": "Bob", "owes": {"Adam": 3.0}, "owed_by": {}, "balance": -3.0},
+                {"name": "Cesar", "owes": {}, "owed_by": {}, "balance": 0.0}
+            ]
+        }
+
+"""
+
 import json
 
 class RestAPI:

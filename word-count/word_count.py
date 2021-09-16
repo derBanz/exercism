@@ -1,3 +1,13 @@
+"""
+Set Task: Given sentence (String), count the occurences of each word in that phrase.
+Method:
+* sentence is cleaned and split into s (list).
+* Using regular expressions, each word in s is checked if it fits the approved schematics. If true it is added to words (dict) and, if it is there already, its value is incremented by one.
+Example: count_words("\"That's the password: 'PASSWORD 123'!\", cried the Special Agent.\nSo I fled.")
+(-> ['"that\'s', 'the', 'password:', "'password", '123\'!"', 'cried', 'the', 'special', 'agent.', 'so', 'i', 'fled.'])
+-> ['"that\'s', 'the', 'password:', "'password", '123\'!"', 'cried', 'the', 'special', 'agent.', 'so', 'i', 'fled.']
+"""
+
 import re
 
 def count_words(sentence):
@@ -9,9 +19,7 @@ def count_words(sentence):
     c3=re.compile("[0-9]+")
 
     for i in range(len(s)):
-        print(i)
         w=s[i]
-        print(w)
         if c1.search(w)!=None:
             r=c1.search(w).group()
         elif c2.search(w)!=None:
@@ -26,5 +34,3 @@ def count_words(sentence):
             words[r]=1
 
     return words
-
-print(count_words("\"That's the password: 'PASSWORD 123'!\", cried the Special Agent.\nSo I fled."))

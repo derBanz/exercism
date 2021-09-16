@@ -1,4 +1,13 @@
 """
+Set Task: Given list_one (list) and list_two (list), determine if list_one is contained within list_two, if list_two is cointained within list_one, if both are equal or if none is true.
+Method:
+* An if/else check determines whether the lists are equal and if not, which list is bigger than the other.
+* Using that information we loop through the bigger list and compare each slice of the size of the smaller list with the smaller list.
+* If we do not find a match there the lists are unequal.
+Example: sublist([1,3,5],[1,2,3,4,5]) -> "Unequal"
+"""
+
+"""
 This exercise stub and the test suite contain several enumerated constants.
 
 Since Python 2 does not have the enum module, the idiomatic way to write

@@ -1,4 +1,12 @@
 """
+Set Task: Given dice (list) and category (String), calculate the score the dice would give in a game of yacht.
+Method:
+* dice is sorted, and sorted_dice (list) is created to display how many dice have the same result.
+* Going through the possible categories, the correct score is calculated.
+Example: score([1,5,3,4,2],LITTLE_STRAIGHT) -> 30
+"""
+
+"""
 This exercise stub and the test suite contain several enumerated constants.
 
 Since Python 2 does not have the enum module, the idiomatic way to write

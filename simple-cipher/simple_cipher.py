@@ -1,3 +1,14 @@
+"""
+Set Task: Implement a simple cipher including an optional key (String). If no key is provided use a random key.
+Method:
+* On init, if no key was provided a random 100 character key is generated.
+* On encode and decode, each character is shifted by the appropriate key's character position in self.dict (dict).
+Example:
+* C = Cipher("abcd")
+* C.encode("iamapandabear") -> "ibodpbpgacgdr"
+* C.decode("ibodpbpgacgdr") -> "iamapandabear"
+"""
+
 from random import randrange
 
 class Cipher:
@@ -35,6 +46,3 @@ class Cipher:
             j = (j + 1) % len(self.key)
             i += 1
         return res
-
-c = Cipher("zzz")
-print(c.encode("iamapandabear"))

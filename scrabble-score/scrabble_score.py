@@ -1,3 +1,11 @@
+"""
+Set Task: Given word (String), compute the Scrabble score for that word.
+Method:
+* Going through each character of word, it is added to letters (dict) and, if it is already in letters, its value is incremented by one.
+* In the end each letter is compared to values (dict) and its corresponding score multiplied with the occurences and added to word_value (int).
+Example: score("banana") (-> {b:1,a:3,n:2}) -> 8
+"""
+
 def score(word):
     letters=dict()
     values={

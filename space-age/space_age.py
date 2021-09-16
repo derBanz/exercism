@@ -1,3 +1,12 @@
+"""
+Set Task: Given an age in seconds (int), calculate the age someone would be depending on a planet.
+Method: On init, the current age is calculated relative to the Earth. On each method called it gets divided with the appropriate multiplier.
+Example:
+* S = SpaceAge(932342500)
+* S.on_earth() = 29.54
+* S.on_uranus() = 0.35
+"""
+
 class SpaceAge:
     def __init__(self, seconds):
         self.earth=seconds/60/60/24/365.25

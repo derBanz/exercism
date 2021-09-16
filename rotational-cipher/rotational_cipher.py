@@ -1,3 +1,9 @@
+"""
+Set Task: Given text (String) and key (int), create an implementation of the rotational cipher.
+Method: Going through each char from text, it is moved by key amount of letters. The new char is appended to res (String).
+Example: rotate("Hello World",6) -> "Nkrru Cuxrj"
+"""
+
 def rotate(text, key):
     chars="abcdefghijklmnopqrstuvwxyz"
     res=""
@@ -9,5 +15,3 @@ def rotate(text, key):
         else:
             res+=s
     return res
-
-print(rotate("O M G",5))

@@ -1,3 +1,16 @@
+"""
+Set Task: Given number (int) between 0 and 999,999,999,999, spell out that number in English.
+Method:
+* The main function say calls on three anxilliary functions ones, tens and hundreds.
+** ones returns the writeout of numbers between 0 and 9.
+** tens returns the writeout of numbers between 0 and 99, calling on ones.
+** hundreds returns the writeout of numbers between 0 and 999, calling on tens.
+* say breaks up number into chunks of three digits starting at the end and appends those to numlist (list).
+* numlist then gets reversed. The length of numlist defines the dimension of the first and each following list item.
+* Each individual list item gets called with hundreds and its respective dimension drawn from sizes (list).
+Example: say(1224936597) (-> [597,936,224,1] -> [1,224,936,597]) -> "one billion two hundred twenty-four million nine hundred thirty-six thousand five hundred ninety-seven"
+"""
+
 def ones(number):
     nums=["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
     if number < 0:
@@ -44,3 +57,5 @@ def say(number):
         res+=hundreds(numlist[-1])
 
     return res.strip()
+
+print(say(1224936597))
